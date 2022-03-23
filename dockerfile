@@ -1,5 +1,5 @@
 FROM nginx
-RUN apt update && apt install python3
+RUN apt update && apt -y install python3
 WORKDIR /
 COPY . .
 RUN python3 -m unittest test_sitecreator.py
