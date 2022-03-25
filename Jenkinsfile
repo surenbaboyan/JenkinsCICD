@@ -49,6 +49,12 @@ pipeline{
         stage('Deploy to Prod environment'){
             agent { label 'prod' }           
             steps{
+                sh '''contid=$(docker ps | grep $registry | awk \'{print $1}\')
+                   if [ ! -z $contid ];
+                   then
+                   docker stop $contid
+                   docker rm $contid
+                   fi'''
                 sh 'docker run -p 9090:80 -d $registry:$BUILD_NUMBER'
             }
         }
