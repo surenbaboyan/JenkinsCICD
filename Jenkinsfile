@@ -30,5 +30,10 @@ pipeline{
 
             }
         }
+        stage('Deploy to Dev environment'){
+            steps{
+                sh 'docker run -p 9090:80 -d $registry:$BUILD_NUMBER'
+            }
+        }
     }
 }
