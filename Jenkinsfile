@@ -32,7 +32,7 @@ pipeline{
         }
         stage('Deploy to Dev environment'){
             steps{
-                sh '''contid=$(docker ps | grep mywebserver | awk \'{print $1}\')
+                sh '''contid=$(docker ps | grep $registry | awk \'{print $1}\')
 if [ ! -z $contid ];
 then
   docker stop $contid
