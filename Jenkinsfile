@@ -2,7 +2,6 @@ pipeline{
     agent { label 'docker' }
 
     environment{
-        imageName = "webpytest"
         dockerHub = "42b681e3-a3cc-4816-9f2a-1cfe57921f48"
         registry  = "surenbaboyan/webpytest"
     }
@@ -16,7 +15,7 @@ pipeline{
         stage('Build docker image'){
             steps{
                 script{
-                    dockerImage = docker.build imageName
+                    dockerImage = docker.build + registry + ":$BUILD_NUMER"
                 }
 
             }
@@ -24,9 +23,8 @@ pipeline{
         stage('Push imge to dockerHub'){
             steps{
                 script{
-                    docker.withRegistry(registry,dockerHub){
-                        dockerImage.push("$BUILD_NUMBER")
-                        dockerImage.push("latest")
+                    docker.withRegistry('',dockerHub){
+                        dockerImage.push()
                     }
                 }
 
