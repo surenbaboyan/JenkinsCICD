@@ -33,7 +33,7 @@ pipeline{
         stage('Deploy to Dev environment'){
             steps{
                 script{
-                    contid=$(docker ps | grep $registry | awk '{print $1}'
+                    contid=$('docker ps | grep $registry | awk '{print $1}''
                     if ( ! -z $contid ) {
                      docker stop $contid 
                      docker rm $contid
