@@ -32,11 +32,11 @@ pipeline{
         }
         stage('Deploy to Dev environment'){
             steps{
-                sh 'contid=$(docker ps | grep mywebserver | awk '{print $1}')
-                   if [ ! -z $contid ];
-                   then
-                   docker stop $contid
-                   docker rm $contid
+                sh 'contid=$(docker ps | grep mywebserver | awk '{print $1}') \n
+                   if [ ! -z $contid ]; \n
+                   then \n
+                   docker stop $contid \n
+                   docker rm $contid \n
                    fi'
                 sh 'docker run -p 9090:80 -d $registry:$BUILD_NUMBER'
             }
