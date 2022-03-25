@@ -4,6 +4,7 @@ pipeline{
     environment{
         imageName = "webpytest"
         dockerHub = "42b681e3-a3cc-4816-9f2a-1cfe57921f48"
+        registry  = "surenbaboyan/webpytest"
     }
     
     stages{
