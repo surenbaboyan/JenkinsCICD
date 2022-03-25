@@ -12,8 +12,6 @@ pipeline{
                 git 'https://github.com/surenbaboyan/JenkinsCICD.git'
             }
         }
-    }
-    stages{
         stage('Build docker image'){
             steps{
                 script{
@@ -22,8 +20,6 @@ pipeline{
 
             }
         }
-    }
-    stages{
         stage('Push imge to dockerHub'){
             steps{
                 script{
