@@ -35,5 +35,16 @@ pipeline{
                 sh 'docker run -p 9090:80 -d $registry:$BUILD_NUMBER'
             }
         }
+        stage('Deploy to Prod'){
+            steps{
+                input 'Go to Prod'
+            }
+        }
+        stage('Deploy to Prod environment'){
+            agent { label 'prod' }           
+            steps{
+                sh 'docker run -p 9090:80 -d $registry:$BUILD_NUMBER'
+            }
+        }
     }
 }
